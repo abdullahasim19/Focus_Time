@@ -59,7 +59,17 @@ export default function App() {
   const onClear = () => {
     setFocusHistory([]);
   };
-
+  const addSubject=(focusObj)=>{
+    let c=false;
+     focusHistory.map((item) => {
+    if (item.subject === focusObj) 
+      c = true;
+  });
+  if(!c)
+    setFocusSubject(focusObj);
+  else
+    alert('Task Already exists');
+}
   return (
     <View style={styles.container}>
       {focusSubject ? (
@@ -76,7 +86,7 @@ export default function App() {
         />
       ) : (
         <View style={{ flex: 1 }}>
-          <Focus addSubject={setFocusSubject} />
+          <Focus addSubject={addSubject} />
           <FocusHistory focusHistory={focusHistory} onClear={onClear} />
         </View>
       )}
